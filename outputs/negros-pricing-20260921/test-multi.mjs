@@ -3,7 +3,7 @@ import {pathToFileURL} from 'node:url';
 const root=new URL('../../',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
 const b=await chromium.launch({headless:true,channel:'msedge'});
 for(const region of ['Negros','Zamboanga']){
- const p=await b.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.01.html`).href);
+ const p=await b.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
  const report=await p.evaluate(()=>{
   const c=ROSH.getConfig();let checks=0;const check=(a,b)=>{checks++;if(Math.abs(a-b)>1e-6||typeof a!==typeof b)throw Error(JSON.stringify({a,b}));};
   const j={service:'Relocate',area:600,multi:true,relocationLots:[2000,12000],sameVisit:true,proximity:'adjacent',distanceMode:'manual',km:0,site:'',report:false};

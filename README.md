@@ -1,9 +1,9 @@
 # ROSH regional pricing calculators
 
-Open either file directly in a modern browser:
+Use the [online app](https://jrosprs7.github.io/ROSH/) to choose a region, or open either file directly in a modern browser:
 
-- [Negros Pricing v.01](Negros/ROSH%20Negros%20Pricing%20v.01.html)
-- [Zamboanga Pricing v.01](Zamboanga/ROSH%20Zamboanga%20Pricing%20v.01.html)
+- [Negros Pricing v.02](Negros/ROSH%20Negros%20Pricing%20v.02.html)
+- [Zamboanga Pricing v.02](Zamboanga/ROSH%20Zamboanga%20Pricing%20v.02.html)
 
 The files work offline. Each contains its own logo, rates, destinations and calculation code. The current files are not published on the business domain.
 
@@ -113,11 +113,15 @@ The password is a convenience lock in a standalone file, not enforceable server-
 - `web/pricing-template.html`: shared responsive layout and appearance.
 - `web/negros-settings.json`, `web/zamboanga-settings.json`: embedded configuration used by the builder.
 - `web/assets/default-header.png`: shared header image.
-- `web/build-html.py`: assembles the two standalone v.01 files. Both regions must receive shared feature fixes together.
+- `web/build-html.py`: assembles the two standalone regional HTML files. Both regions must receive shared feature fixes together.
 - `SKILL.md`: project rules and approved pricing decisions.
 - `ROADMAP.md`: future domain-hosting work.
 - `outputs/negros-pricing-20260921/`: browser and workbook verification scripts.
 
-Before rebuilding, preserve any rates edited in distributed HTML copies or browser storage. Do not re-extract old workbook defaults over newer approved HTML settings. Keep v.01 filenames until a new version is explicitly requested.
+Before rebuilding, preserve any rates edited in distributed HTML copies or browser storage. Do not re-extract old workbook defaults over newer approved HTML settings. Advance both regional HTML versions together for each delivered program update (v.02, v.03, etc.), updating build/download names, tests and these links. Increment once per release, not per intermediate edit. Current release: v.02; next program update: v.03. Earlier releases remain available in Git history.
 
 The Equal Share Excel files remain reference workbooks for the pre-multi-lot rules. **Multi-lot Relocation and its discount settings are currently implemented in the HTML calculators, not those Excel references.** The original pre-Equal-Share Excel backups are retained separately.
+
+## Publishing and releases
+
+GitHub Pages serves the main branch root. `index.html` is the region selector, generated from `web/home-template.html`. `.nojekyll` serves the files directly. Set the next release number in `web/version.txt` once per update; run `python web/build-html.py` to generate both regional files and the home page. Update test targets and README links for the release. The home-page URL stays the same. Older v.01 files remain available for existing links; the home page links only to v.02. Hosted and local-file settings use separate browser storage.

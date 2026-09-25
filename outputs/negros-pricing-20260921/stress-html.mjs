@@ -4,7 +4,7 @@ import {chromium} from 'playwright';
 const root=new URL('../../',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
 const browser=await chromium.launch({headless:true,channel:'msedge'});const reports=[];
 for(const region of ['Negros','Zamboanga']){
- const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.01.html`).href);
+ const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
  const report=await page.evaluate(()=>{
   const c=ROSH.getConfig(),r=c.rates;let cases=0;const failures=[];
   const job={service:'Subdivide',area:600,equal:true,count:3,sublots:[200],distanceMode:'manual',km:0,site:'',report:false};

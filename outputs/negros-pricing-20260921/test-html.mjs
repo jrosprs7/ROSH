@@ -8,7 +8,7 @@ let checks=0;function eq(a,b,label){if(typeof a==='number'&&typeof b==='number'?
 const browser=await chromium.launch({headless:true,channel:'msedge'});
 for(const region of ['Negros','Zamboanga']){
  const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.01.html`).href);
+ await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
  await page.locator('#service').selectOption('Subdivide');await page.locator('#area').fill('600');await page.locator('#equal').check();await page.locator('#count').fill('3');
  eq(await page.locator('#total').textContent(),'₱28,500','equal total');eq(await page.locator('#per-lot').textContent(),'₱9,500 per lot × 3 lots','equal per lot');
  await page.locator('h1').click();await page.screenshot({path:`${root}/web/previews/${region}-mobile.png`,fullPage:true});

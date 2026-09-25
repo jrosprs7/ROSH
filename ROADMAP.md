@@ -319,3 +319,12 @@ Implemented in both standalone HTML files: 2–30 relocation lots, adjacent or n
 README.md explains engineer inputs, pricing, quotation copying, settings, local persistence and distributing updated HTML files. The Excel references do not contain Multi-lot Relocation. Future hosted implementation must preserve these rules and add central configuration/authentication if required.
 
 Verification: 4,183 multi-lot calculation/order assertions per region; 2,249 existing workbook/UI/settings assertions overall; and 10,043 expanded scenarios per region passed. Mobile and desktop multi-lot layouts were visually inspected without unresolved formatting issues. These checks cover representative and boundary scenarios, not every possible numeric input.
+
+## Release numbering — latest instruction
+
+Each future delivered program update advances both regional HTML versions together: v.02, v.03, and so on. This supersedes earlier instructions to retain v.01. Update build outputs, download filenames, test targets and README links together, once per release. Current program remains v.01; the next program update is v.02. Git history retains previous releases.
+
+## GitHub Pages v.02
+
+Added index.html with a mobile-friendly regional selector and .nojekyll for static hosting from main/root. Both current calculators are v.02; pricing configuration and computation remain identical to v.01. Release number is centralized in web/version.txt. Home-page links, mobile layout and calculation regression checks passed locally. Prior v.01 files remain for old links; only v.02 is linked as current.
+
