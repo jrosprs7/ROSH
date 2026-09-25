@@ -6,7 +6,7 @@ const browser=await chromium.launch({headless:true,channel:'msedge'});
 try {
  for(const region of ['Negros','Zamboanga']){
   const page=await browser.newPage();
-  await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
+  await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.03.html`).href);
   await page.evaluate(()=>{
    const c=JSON.parse(document.querySelector('#pricing-config').textContent);
    const hash=JSON.stringify(c).split('').reduce((h,x)=>(Math.imul(31,h)+x.charCodeAt(0))|0,0);

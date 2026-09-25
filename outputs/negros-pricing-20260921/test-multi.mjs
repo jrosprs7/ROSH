@@ -3,13 +3,13 @@ import {pathToFileURL} from 'node:url';
 const root=new URL('../../',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
 const b=await chromium.launch({headless:true,channel:'msedge'});
 for(const region of ['Negros','Zamboanga']){
- const p=await b.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
+ const p=await b.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.03.html`).href);
  const report=await p.evaluate(()=>{
   const c=ROSH.getConfig();let checks=0;const check=(a,b)=>{checks++;if(Math.abs(a-b)>1e-6||typeof a!==typeof b)throw Error(JSON.stringify({a,b}));};
   const j={service:'Relocate',area:600,multi:true,relocationLots:[2000,12000],sameVisit:true,proximity:'adjacent',distanceMode:'manual',km:0,site:'',report:false};
   check(ROSH.calculate(c,j).total,26000);check(ROSH.calculate(c,{...j,proximity:'nearby'}).total,31000);check(ROSH.calculate(c,{...j,report:true}).total,41000);check(ROSH.calculate(c,{...j,proximity:'nearby',report:true}).total,46000);
-  const normal=a=>{let h=Math.floor(a/5000)*.5;return (a<1000?10000:a<10000?13000:15000)+Math.max(0,Math.min(h,5)-1)*5000+Math.max(0,Math.min(h,10)-5)*3000+Math.max(0,h-10)*2500;};
-  for(let n=2;n<=30;n++)for(const a of [600,999.99,1000,9999.99,10000,14999.99,15000,50000,105000])for(const proximity of ['adjacent','nearby'])for(const report of [false,true]){
+  const normal=a=>{let h=Math.floor(a/5000)*.5;return (a<2000?10000:a<10000?13000:15000)+Math.max(0,Math.min(h,5)-1)*5000+Math.max(0,Math.min(h,10)-5)*3000+Math.max(0,h-10)*2500;};
+  for(let n=2;n<=30;n++)for(const a of [600,999.99,1000,1999.99,2000,2000.01,9999.99,10000,14999.99,15000,50000,105000])for(const proximity of ['adjacent','nearby'])for(const report of [false,true]){
    const areas=Array.from({length:n},(_,i)=>a+(i%3)*5000),fees=areas.map(normal),max=Math.max(...fees),service=max+(fees.reduce((s,x)=>s+x,0)-max)*(proximity==='adjacent'?.5:.7),total=Math.floor(Math.round((service+1000+(report?n*5000:0))*100)/100000)*1000;
    const got=ROSH.calculate(c,{...j,area:areas[0],relocationLots:areas.slice(1),km:15,proximity,report});check(got.total,total);check(got.travel,1000);check(got.report,report?n*5000:0);
    areas.reverse();check(ROSH.calculate(c,{...j,area:areas[0],relocationLots:areas.slice(1),km:15,proximity,report}).total,total);

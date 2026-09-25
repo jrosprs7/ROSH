@@ -23,7 +23,17 @@ function validateConfig(c){
  for(const d of c.destinations){if(!d.name.trim()||names.has(d.name.trim().toLowerCase()))return 'Location names must be present and unique.';names.add(d.name.trim().toLowerCase());if(d.km!==null&&(!numeric(d.km)||+d.km<0))return 'Enter a nonnegative distance for '+d.name+'.';}
  return '';
 }
-try{const stored=JSON.parse(localStorage.getItem(storageKey));if(stored){withMultiDefaults(stored);if(!validateConfig(stored))config=stored;}}catch{}
+try{
+ let stored=JSON.parse(localStorage.getItem(storageKey));
+ // v.03 preserves browser overrides from the prior 1,000-sqm release.
+ if(!stored&&'APP_VERSION'==='03'&&Number(FILE_CONFIG.rates[10])===2000){
+  const prior=clone(FILE_CONFIG);prior.rates[10]=1000;
+  const hash=JSON.stringify(prior).split('').reduce((h,c)=>(Math.imul(31,h)+c.charCodeAt(0))|0,0);
+  const previous=JSON.parse(localStorage.getItem('rosh-pricing-'+prior.region+'-'+hash));
+  if(previous){withMultiDefaults(previous);previous.rates[10]=2000;if(!validateConfig(previous)){stored=previous;localStorage.setItem(storageKey,JSON.stringify(stored));}}
+ }
+ if(stored){withMultiDefaults(stored);if(!validateConfig(stored))config=stored;}
+}catch{}
 function calculate(c,j){
  const r=c.rates,p=k=>Number(r[k]);
  if(!['Relocate','Original survey','Subdivide'].includes(j.service))return fail('Choose a survey type.');
@@ -177,6 +187,6 @@ function readSettings(){const draft=clone(config);document.querySelectorAll('[da
 function saveSettings(){if(!settingsUnlocked)return false;const draft=readSettings(),error=validateConfig(draft);if(error){$('settings-message').textContent=error;return false;}config=draft;try{localStorage.setItem(storageKey,JSON.stringify(config));$('settings-message').textContent='Saved in this browser. Download updated HTML to share these settings.';}catch{$('settings-message').textContent='Applied for this session. Download updated HTML to retain these settings.';}locations();render();return true;}
 $('settings-save').addEventListener('click',saveSettings);
 $('download').addEventListener('click',()=>{if(!saveSettings())return;const doc=document.documentElement.cloneNode(true);doc.querySelector('#pricing-config').textContent=JSON.stringify(config).replaceAll('<','\\u003c');doc.querySelector('#settings').removeAttribute('open');const blob=new Blob(['<!doctype html>\n'+doc.outerHTML],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ROSH '+config.region+' Pricing v.APP_VERSION.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000);});
-$('reset-settings').addEventListener('click',()=>{if(!settingsUnlocked||!confirm('Restore the rates and distances supplied in this HTML file?'))return;config=withMultiDefaults(clone(FILE_CONFIG));try{localStorage.removeItem(storageKey);}catch{}settingsForm();locations();render();});
+$('reset-settings').addEventListener('click',()=>{if(!settingsUnlocked||!confirm('Restore the rates and distances supplied in this HTML file?'))return;config=withMultiDefaults(clone(FILE_CONFIG));try{localStorage.setItem(storageKey,JSON.stringify(config));}catch{}settingsForm();locations();render();});
 // Clear transient DOM when opening a downloaded copy.
 $('sublots').replaceChildren();$('relocation-lots').replaceChildren();$('calculator').reset();locations();render();

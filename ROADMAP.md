@@ -328,3 +328,7 @@ Each future delivered program update advances both regional HTML versions togeth
 
 Added index.html with a mobile-friendly regional selector and .nojekyll for static hosting from main/root. Both current calculators are v.02; pricing configuration and computation remain identical to v.01. Release number is centralized in web/version.txt. Home-page links, mobile layout and calculation regression checks passed locally. Prior v.01 files remain for old links; only v.02 is linked as current.
 
+
+## v.03 relocation cutoff
+
+For both regions, the PHP 13,000 relocation base now starts at exactly 2,000 sqm (previously 1,000). Positive areas below 2,000 use PHP 10,000; areas from 2,000 to below 10,000 use PHP 13,000; 10,000 and above retain PHP 15,000 plus applicable area surcharges. Applies per lot in Multi-lot Relocation too. Both current Excel references use Pricing Settings C10 = 2000. Other services, rates, rounding and layout remain unchanged.

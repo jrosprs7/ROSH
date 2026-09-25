@@ -3,7 +3,7 @@ import {pathToFileURL} from 'node:url';
 const root=new URL('../../',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
 const b=await chromium.launch({headless:true,channel:'msedge'});
 for(const region of ['Negros','Zamboanga']){
- const p=await b.newPage({viewport:{width:390,height:844}});await p.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
+ const p=await b.newPage({viewport:{width:390,height:844}});await p.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.03.html`).href);
  if(await p.locator('#quotation-panel').isVisible())throw Error('Invalid quote visible');
  await p.locator('#area').fill('600');await p.locator('#quotation-panel summary').click();
  let text=await p.locator('#quotation-text').inputValue();if(!text.includes('1. Verify lot’s boundaries as per official records.')||!text.includes('Total quotation: ₱10,000'))throw Error('Relocation quote');

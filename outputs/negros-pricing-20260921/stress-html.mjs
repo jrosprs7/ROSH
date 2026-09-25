@@ -4,7 +4,7 @@ import {chromium} from 'playwright';
 const root=new URL('../../',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
 const browser=await chromium.launch({headless:true,channel:'msedge'});const reports=[];
 for(const region of ['Negros','Zamboanga']){
- const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
+ const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.03.html`).href);
  const report=await page.evaluate(()=>{
   const c=ROSH.getConfig(),r=c.rates;let cases=0;const failures=[];
   const job={service:'Subdivide',area:600,equal:true,count:3,sublots:[200],distanceMode:'manual',km:0,site:'',report:false};
@@ -15,7 +15,7 @@ for(const region of ['Negros','Zamboanga']){
    return {total:equal?per*+j.count:Math.floor(before/r[37])*r[37],perLot:per};
   }
   function check(j,conf=c){cases++;const got=ROSH.calculate(conf,j),want=expected(conf,j);if(!got.ok||Math.abs(got.total-want.total)>1e-6||got.perLot!==want.perLot)failures.push({j,got,want});if(got.ok&&got.total>got.subtotal+1e-6)failures.push({issue:'rounding increased quote',j});}
-  const areas=[.01,200,999.99,1000,4999.99,5000,5000.01,9999.99,10000,10000.01,14999.99,15000,15000.01,19999.99,20000,49999.99,50000,50000.01,99999.99,100000,100000.01,105000,1000000];
+  const areas=[.01,200,999.99,1000,1999.99,2000,2000.01,4999.99,5000,5000.01,9999.99,10000,10000.01,14999.99,15000,15000.01,19999.99,20000,49999.99,50000,50000.01,99999.99,100000,100000.01,105000,1000000];
   for(let n=2;n<=18;n++)for(const a of areas)for(const km of [0,4.99,5,5.01,14.99,15,15.01,235,1000])for(const report of [false,true])check({...job,area:a*n,count:n,km,report});
   for(const service of ['Relocate','Original survey'])for(const area of areas)for(const km of [0,4.99,5,14.99,15,235])for(const report of [false,true])check({...job,service,area,km,report});
   for(let n=1;n<=17;n++)for(const a of [100,4999.99,5000,10000,15000,100000])for(const remainder of [100,15000,55000])check({...job,equal:false,area:n*a+remainder,sublots:Array(n).fill(a),report:true,km:235});

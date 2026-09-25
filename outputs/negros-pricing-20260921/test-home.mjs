@@ -3,11 +3,6 @@ import {pathToFileURL} from 'node:url';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const root=new URL('../../',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
-for(const region of ['Negros','Zamboanga']){
- const old=fs.readFileSync(`${root}/${region}/ROSH ${region} Pricing v.01.html`,'utf8');
- const fresh=fs.readFileSync(`${root}/${region}/ROSH ${region} Pricing v.02.html`,'utf8');
- assert.equal(fresh,old.replace('</title>',' · v.02</title>').replaceAll('Pricing v.01.html','Pricing v.02.html'));
-}
 const b=await chromium.launch({headless:true,channel:'msedge'});
 try{
  const p=await b.newPage();
@@ -19,7 +14,7 @@ try{
  }
  for(const region of ['Negros','Zamboanga']){
  await p.goto(pathToFileURL(`${root}/index.html`).href);await p.getByRole('link',{name:region}).click();
- assert.ok(p.url().includes('v.02.html'));await p.locator('#area').fill('600');assert.equal(await p.locator('#total').textContent(),'₱10,000');
+ assert.ok(p.url().includes('v.03.html'));await p.locator('#area').fill('600');assert.equal(await p.locator('#total').textContent(),'₱10,000');
  }
- console.log('Both v.02 calculators differ only in version labels/download names; home links, banner and mobile/desktop overflow checks passed.');
+ console.log('home links, banner and mobile/desktop overflow checks passed.');
 }finally{await b.close();}

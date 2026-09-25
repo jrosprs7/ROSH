@@ -6,7 +6,7 @@ if(!password)throw Error('Set ROSH_SETTINGS_PASSWORD for this test.');
 const browser=await chromium.launch({headless:true,channel:'msedge'});
 for(const region of ['Negros','Zamboanga']){
  const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.02.html`).href);
+ await page.goto(pathToFileURL(`${root}/${region}/ROSH ${region} Pricing v.03.html`).href);
  await page.locator('#area').fill('600');
  if(await page.locator('#total').textContent()!=='₱10,000')throw Error('Pricing changed');
  await page.locator('#settings-open').click();await page.locator('#settings-password').fill('incorrect');await page.locator('#password-form button[type=submit]').click();await page.locator('#password-error').filter({hasText:'Incorrect'}).waitFor();
