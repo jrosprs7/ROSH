@@ -1,0 +1,15 @@
+import fs from 'node:fs/promises';
+import {Workbook,SpreadsheetFile,FileBlob} from '@oai/artifact-tool';
+const out=new URL('.',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
+const w=await SpreadsheetFile.importXlsx(await FileBlob.load(`${out}/Negros_Pricing.xlsx`));
+const q=w.worksheets.getItem('Negros Pricing');
+q.getRange('G8:G10').values=[['Manual km'],[235],['Negros Oriental site']];
+w.recalculate();
+if(q.getRange('G30').values[0][0]!==12000 || q.getRange('G5').values[0][0]!==42000)throw Error('Imported workbook original survey manual-distance calculation failed');
+q.getRange('C10').values=[['Yes']];w.recalculate();
+if(q.getRange('G5').values[0][0]!==47000)throw Error('Imported original survey report calculation failed');
+const png=await w.render({sheetName:'Negros Pricing',range:'B2:G12',scale:1.5,format:'png'});
+await fs.writeFile(`${out}/manual-mode-preview.png`,new Uint8Array(await png.arrayBuffer()));
+q.getRange('G9').values=[[null]];w.recalculate();
+if(q.getRange('G5').values[0][0]!=='')throw Error('Imported workbook invalid-distance gate failed');
+console.log('Reimport verified: manual travel and missing-distance gate recalculate correctly. Original deliverable remains unchanged.');

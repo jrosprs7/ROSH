@@ -1,0 +1,17 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.inspect.ndjson
+~$*
+web/previews/
+research/
+Zamboanga/research/
+outputs/*
+!outputs/negros-pricing-20260921/
+outputs/negros-pricing-20260921/*
+!outputs/negros-pricing-20260921/*.mjs
+!outputs/negros-pricing-20260921/*.py
+!outputs/negros-pricing-20260921/Negros_Pricing.xlsx

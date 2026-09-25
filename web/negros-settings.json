@@ -1,0 +1,225 @@
+{
+  "region": "Negros",
+  "origin": "Bacolod",
+  "rates": {
+    "7": 10000.0,
+    "8": 13000.0,
+    "9": 15000.0,
+    "10": 1000.0,
+    "11": 10000.0,
+    "14": 13000.0,
+    "15": 8000.0,
+    "16": 8500.0,
+    "17": 10000.0,
+    "18": 5000.0,
+    "19": 10000.0,
+    "22": 5000.0,
+    "23": 3000.0,
+    "24": 2500.0,
+    "25": 4000.0,
+    "26": 3000.0,
+    "27": 2000.0,
+    "28": 1.0,
+    "29": 5.0,
+    "30": 10.0,
+    "31": 0.5,
+    "34": 500.0,
+    "35": 10.0,
+    "36": 5000.0,
+    "37": 1000.0,
+    "39": 30000.0,
+    "42": 500.0
+  },
+  "labels": {
+    "7": "Relocation: small lot",
+    "8": "Relocation: middle band",
+    "9": "Relocation: large lot",
+    "10": "Middle band starts (sqm)",
+    "11": "Large band starts (sqm)",
+    "14": "Subdivision: remaining-lot base",
+    "15": "Additional sublot: small",
+    "16": "Additional sublot: middle",
+    "17": "Additional sublot: large",
+    "18": "Sublot middle band starts (sqm)",
+    "19": "Sublot large band starts (sqm)",
+    "22": "Reloc./Original: first tier / ha",
+    "23": "Reloc./Original: second tier / ha",
+    "24": "Reloc./Original: final tier / ha",
+    "25": "Subdivision: first tier / ha",
+    "26": "Subdivision: second tier / ha",
+    "27": "Subdivision: final tier / ha",
+    "28": "Included area (ha)",
+    "29": "First tier ends (ha)",
+    "30": "Second tier ends (ha)",
+    "31": "Area rounding increment (ha)",
+    "34": "Travel charge / distance unit",
+    "35": "Travel distance unit (km)",
+    "36": "Survey report charge",
+    "37": "Final rounding increment (PHP)",
+    "39": "Original survey base",
+    "42": "Equal Share step (PHP)"
+  },
+  "destinations": [
+    {
+      "name": "Bacolod City",
+      "km": 0.0,
+      "note": "Origin-city preset. Use Manual km for the actual local site."
+    },
+    {
+      "name": "Bago City",
+      "km": 22.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Binalbagan",
+      "km": 66.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Cadiz City",
+      "km": 60.6,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Calatrava",
+      "km": 129.3,
+      "note": "Published north/coastal estimate; route can differ."
+    },
+    {
+      "name": "Candoni",
+      "km": 132.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Cauayan",
+      "km": 113.0,
+      "note": "Replaces 165 km; also supported by DENR-hosted project description."
+    },
+    {
+      "name": "Salvador Benedicto",
+      "km": 46.3,
+      "note": "PSGC name; commonly called Don Salvador Benedicto / DSB."
+    },
+    {
+      "name": "Enrique B. Magalona",
+      "km": 22.1,
+      "note": "PSGC name; formerly abbreviated EB Magalona in the sheet."
+    },
+    {
+      "name": "Escalante City",
+      "km": 94.12,
+      "note": "Published city estimate; old town/site endpoints may differ."
+    },
+    {
+      "name": "Himamaylan City",
+      "km": 77.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Hinigaran",
+      "km": 54.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Hinoba-an",
+      "km": 190.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Ilog",
+      "km": 97.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Isabela",
+      "km": 72.0,
+      "note": "Via Hinigaran. Map alternatives: 76 km via Binalbagan; 85.1 via La Castellana."
+    },
+    {
+      "name": "Kabankalan City",
+      "km": 92.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "La Carlota City",
+      "km": 46.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "La Castellana",
+      "km": 67.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Manapla",
+      "km": 43.2,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Moises Padilla",
+      "km": 67.0,
+      "note": "Map estimate. Other route references are about 85–89 km; use site route."
+    },
+    {
+      "name": "Murcia",
+      "km": 16.6,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Pontevedra",
+      "km": 42.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Pulupandan",
+      "km": 30.0,
+      "note": "Published town/city estimate; actual survey site can differ."
+    },
+    {
+      "name": "Sagay City",
+      "km": 82.16,
+      "note": "Published city estimate; old town/site endpoints may differ."
+    },
+    {
+      "name": "San Carlos City",
+      "km": 87.3,
+      "note": "Via DSB. Coastal route is 143.7 km; use Manual km for that route."
+    },
+    {
+      "name": "San Enrique",
+      "km": 37.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Silay City",
+      "km": 14.6,
+      "note": "Published city estimate; not the airport or actual survey site."
+    },
+    {
+      "name": "Sipalay City",
+      "km": 170.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Talisay City",
+      "km": 7.4,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Toboso",
+      "km": 113.1,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Valladolid",
+      "km": 32.0,
+      "note": "Published town/city estimate."
+    },
+    {
+      "name": "Victorias City",
+      "km": 34.1,
+      "note": "Published town/city estimate."
+    }
+  ],
+  "originDestination": "Bacolod City"
+}
